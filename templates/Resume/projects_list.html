@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% for project in projects %}
+
+        <div >
+            <h2>{{ project.title }}</h2>
+            <p>{{ project.description }}</p>
+            <p>{{ project.due_date }}</p>
+        </div>
+        <li><a href="{% url 'resume:projects_update' project.pk %}"> Change info about projects </a></li>   
+        <form method="post" novalidate action="{% url 'resume:projects_delete' project.pk %}">
+            {% csrf_token %}
+            <button type="submit" > Delete </button>
+        </form>
+    {% endfor %}
+    <li><a href="{% url 'resume:projects_create' user.resume.pk %}"> Create project information  </a></li>
+
+
+
+{% endblock content %}

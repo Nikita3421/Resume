@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Каталог шаблонов резюме</h2>
+
+  <div class="template-list">
+    {% for template in templates %}
+      <div class="template-item">
+        <h3>{{ template.name }}</h3>
+        <p>{{ template.description }}</p>
+        <a href="{{ template.template_file.url }}" target="_blank" class="btn">Предпросмотр</a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

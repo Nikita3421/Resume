@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% load static %}
+<div >
+    <h3> Name: {{ resume.name }} Surname: {{ resume.surname }}</h3>
+    <h2> Birth date: {{ resume.birth_date }} Birth place: {{ resume.birth_place }}</h2>
+    <h2> Adress: {{ resume.residance_address }}</h2>
+    <h2> Number: {{ resume.tel_num }}</h2>
+    <h1> Email: {{ resume.email }}</h1>
+    {% if resume.image %}
+        <img src="{{ resume.image.url }}" alt="Resume Image">
+    {% else %}
+        <img src="{% static 'images/default.jpg' %}" alt="Default Image"> 
+    {% endif %} 
+    <p> Studying: {{ resume.studying }}</p>
+    <p> work_exp: {{ resume.work_exp }}</p>
+    <p> Knowladge: {{ resume.knowladge }}</p>
+    <a href="{% url 'resume:resume_main' resume.pk %}" > Back </a>
+    <a href="{% url 'resume:resume_update' resume.pk %}"> Edit </a>
+</div>
+{% endblock %}

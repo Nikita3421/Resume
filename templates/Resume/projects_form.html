@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div > Fill information about your projects  </div>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.title }}
+        {{ form.description }}
+        {% if pk %}
+            <div>
+                <button type="submit" > Edit  </button>
+            </div>
+        {% else %}  
+            <div>
+                <button type="submit" > Save  </button>
+            </div>
+        {% endif %}
+    </form>
+
+{% endblock %}

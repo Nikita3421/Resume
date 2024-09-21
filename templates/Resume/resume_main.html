@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if user == portfolio.user %}
+        <h1> Would you like to veiw/update your resume "{{ resume.user.username }}"?</h1>
+        <ul>
+            <li><a href="{% url 'resume:resume_detail' resume.pk %}">  Resume  </a></li>
+            <li><a href="{% url 'resume:projects_list' resume.pk %}"> Update projects info </a></li>
+            <li><a href="{% url 'resume:resume_update' resume.pk %}"> Update resume  </a></li>
+            <li><a href="{% url 'resume:resume_pdf' resume.pk %}"> Download (pdf file)  </a></li>
+        </ul>
+    {% else %}
+        <h1> Would you like to view resume "{{ resume.user.username }}"?</h1>
+
+        <ul>
+            <li><a href="{% url 'resume:resume_detail' resume.pk %}"> Resume  </a></li>
+            <li><a href="{% url 'resume:projects_list' resume.pk %}"> Projects info  </a></li>
+            <li><a href="{% url 'resume:resume_pdf' resume.pk %}"> Download (pdf file) </a></li>
+        </ul>
+    {% endif %} 
+{% endblock content %}

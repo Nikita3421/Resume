@@ -1,0 +1,37 @@
+<!-- Основной шаблон и менюшка -->
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Resume </title>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="{% url 'resume:home' %}"> Home Page </a></li>
+        {% if user.is_authenticated %}
+          {% if user.resume and user.resume.pk %}
+            <li><a href="{% url 'resume:resume_main' user.resume.pk %}"> Resume main Page </a></li>
+          {% else %}
+            <li><a href="{% url 'resume:resume_create' %}"> Create Resume </a></li>
+          {% endif %}
+    
+            <a href="{% url 'auth_sys:logout' %}"> Logout </a>
+       
+        {% else %}
+          <li><a href="{% url 'auth_sys:login' %}"> Sign in  </a></li>
+          <li><a href="{% url 'auth_sys:signup' %}"> Sign Up  </a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+
+</body>
+</html>
